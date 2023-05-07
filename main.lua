@@ -15,6 +15,8 @@ function love.draw()
 	setColorHEX("#ffffff")
 	love.graphics.print(tostring(Cursor), Font, 300, 300)
 
+	love.graphics.rectangle("line", 0, (Cursor - 1) * 32, love.graphics.getWidth(), 32)
+
 	if List then
 		for k, v in pairs(List) do
 			if v.done then
