@@ -58,8 +58,7 @@ end
 
 function love.keypressed(key)
 	if love.keyboard.isDown("i") then
-		List[#List + 1] = Button:new("TODO", function()
-		end, 0, #List * 102, 100, 100)
+		List[#List + 1] = Button:new("TODO", function() end, 0, #List * 32, 100, 30)
 		List[#List].done = false
 		Cursor = #List
 	end
@@ -72,6 +71,11 @@ function love.keypressed(key)
 	if love.keyboard.isDown("space") then
 		if Cursor > 0 then
 			List[Cursor].done = not List[Cursor].done
+		end
+	end
+	if love.keyboard.isDown("d") then
+		if Cursor > 0 then
+			table.remove(List, Cursor)
 		end
 	end
 end
