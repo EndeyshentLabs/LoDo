@@ -2,8 +2,10 @@ Font = nil
 List = {}
 Cursor = 0
 StatusText = "Welcome to LoDo. Made by EndeyshentLabs"
----@type "T"|"E"|"I"
-Mode = "E"
+---`N` - normal mode
+---`I` - input mode
+---@type "N"|"I"
+Mode = "W"
 
 local input = ""
 
@@ -42,8 +44,8 @@ function love.draw()
 		love.graphics.getHeight()
 	)
 	setColorHEX("#efefef")
-	love.graphics.print(Mode, Font, 0, love.graphics.getHeight() - 28)
-	love.graphics.print((" | %s"):format(StatusText), Font, 18, love.graphics.getHeight() - 28)
+	love.graphics.print(Mode, Font, 4, love.graphics.getHeight() - 28)
+	love.graphics.print((" | %s"):format(StatusText), Font, Font:getWidth("W") + 4, love.graphics.getHeight() - 28)
 end
 
 local once = false
@@ -69,7 +71,7 @@ function love.update()
 		once = false
 		StatusText = "Created " .. input
 		input = ""
-		Mode = "T"
+		Mode = "N"
 	end
 end
 
@@ -90,6 +92,7 @@ function love.keypressed(key)
 	end
 	if Mode ~= "I" and love.keyboard.isDown("d") then
 		if Cursor > 0 then
+			StatusText = "Deleted " .. List[Cursor].text
 			table.remove(List, Cursor)
 		end
 	end
@@ -98,7 +101,9 @@ function love.keypressed(key)
 		once = true
 	end
 	if Mode == "I" and key == "backspace" then
-		input = string.sub(input, 0, #input - 1)
+		if #input ~= 1 then
+			input = string.sub(input, 0, #input - 1)
+		end
 	end
 end
 
