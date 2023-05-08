@@ -5,7 +5,7 @@ StatusText = "Welcome to LoDo. Made by EndeyshentLabs"
 ---`N` - normal mode
 ---`I` - input mode
 ---@type "N"|"I"
-Mode = "W"
+Mode = "N"
 
 local input = ""
 
