@@ -44,7 +44,8 @@ function love.draw()
 		mode = "T"
 	end
 	setColorHEX("#efefef")
-	love.graphics.print((" %s | %s"):format(mode, StatusText), Font, 0, love.graphics.getHeight() - 28)
+	love.graphics.print(mode, Font, 0, love.graphics.getHeight() - 28)
+	love.graphics.print((" | %s"):format(StatusText), Font, 18, love.graphics.getHeight() - 28)
 end
 
 function love.update(dt)
