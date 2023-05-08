@@ -26,7 +26,7 @@ function TodoElement:new(text, x, y, w, h)
 			self.text,
 			Font,
 			self.x + (self.w / 2) - Font:getWidth(self.text) / 2,
-			self.y + (self.h / 2) - Font:getHeight() / 2
+			self.y + (self.h / 2) - Font:getHeight() / 2 + 2
 		)
 	end
 

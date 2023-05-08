@@ -39,7 +39,7 @@ function love.load()
 			end
 		end
 	end
-	Font = love.graphics.newFont("res/fonts/Lato-Regular.ttf", 24, "normal")
+	Font = love.graphics.newFont("res/fonts/VictorMono-Regular.ttf", 24)
 end
 
 function love.draw()
@@ -69,8 +69,8 @@ function love.draw()
 		love.graphics.getHeight()
 	)
 	setColorHEX("#efefef")
-	love.graphics.print(Mode, Font, 4, love.graphics.getHeight() - 28)
-	love.graphics.print((" | %s"):format(StatusText), Font, Font:getWidth("W") + 4, love.graphics.getHeight() - 28)
+	love.graphics.print(Mode, Font, 0, love.graphics.getHeight() - 28)
+	love.graphics.print(("| %s"):format(StatusText), Font, Font:getWidth("W"), love.graphics.getHeight() - 28)
 end
 
 local once = false
