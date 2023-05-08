@@ -50,3 +50,11 @@ $ git clone https://github.com/EndeyshentLabs/lodo.git
 $ cd lodo
 $ ./fluid
 ```
+
+## Resources used to make LoDo
+
+- [Victor Mono Font](https://rubjo.github.io/victor-mono/)
+- [Lato Font](https://fonts.google.com/specimen/Lato)
+- [LOVE2D](https://love2d.org/)
+- [Lua](https://www.lua.org/)
+- [Fluid](https://github.com/EndeyshentLabs/Fluid)
