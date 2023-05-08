@@ -12,7 +12,33 @@ local input = ""
 require("utils")
 require("UI")
 
+function StrSplit(inputstr, sep)
+	if sep == nil then
+		sep = "%s"
+	end
+	local t = {}
+	for str in string.gmatch(inputstr, "([^" .. sep .. "]+)") do
+		table.insert(t, str)
+	end
+	return t
+end
+
 function love.load()
+	local c, s = love.filesystem.read("todos.LoDo")
+	if c then
+		local lines = StrSplit(c, "\r\n")
+		for _, v in pairs(lines) do
+			if v:sub(1, 2) == "T " then
+				List[#List + 1] = TodoElement:new(v:sub(3, #v), 0, 0, love.graphics.getWidth() / 2, 30)
+				List[#List].done = false
+			elseif v:sub(1, 2) == "D " then
+				List[#List + 1] = TodoElement:new(v:sub(3, #v), 0, 0, love.graphics.getWidth() / 2, 30)
+				List[#List].done = true
+			else
+				assert(false, "UNKNOWN: " .. v:sub(1, 2))
+			end
+		end
+	end
 	Font = love.graphics.newFont("res/fonts/Lato-Regular.ttf", 24, "normal")
 end
 
@@ -31,6 +57,7 @@ function love.draw()
 			else
 				v.x = 0
 			end
+			v.w = love.graphics.getWidth() / 2
 			v:draw()
 		end
 	end
@@ -76,21 +103,21 @@ function love.update()
 end
 
 function love.keypressed(key)
-	if love.keyboard.isDown("i") then
+	if key == "i" then
 		Mode = "I"
 	end
-	if love.keyboard.isDown("down") then
+	if key == "down" then
 		Cursor = Cursor + 1
 	end
-	if love.keyboard.isDown("up") then
+	if key == "up" then
 		Cursor = Cursor - 1
 	end
-	if love.keyboard.isDown("space") then
+	if Mode ~= "I" and key == "space" then
 		if Cursor > 0 then
 			List[Cursor].done = not List[Cursor].done
 		end
 	end
-	if Mode ~= "I" and love.keyboard.isDown("d") then
+	if Mode ~= "I" and key == "d" then
 		if Cursor > 0 then
 			StatusText = "Deleted " .. List[Cursor].text
 			table.remove(List, Cursor)
@@ -111,4 +138,18 @@ function love.textinput(text)
 	if Mode == "I" then
 		input = input .. text
 	end
+end
+
+function love.quit()
+	local string = ""
+	for _, v in pairs(List) do
+		if v then
+			if v.done then
+				string = string .. "\n" .. "D " .. v.text
+			else
+				string = string .. "\n" .. "T " .. v.text
+			end
+		end
+	end
+	love.filesystem.write("todos.LoDo", string)
 end

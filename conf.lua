@@ -1,4 +1,5 @@
 function love.conf(t)
+	t.identity = "LoDo"
 	t.title = "Lodo. EndeyshentLabs (C), 2023"
 	t.version = "11.3"
 
