@@ -11,7 +11,7 @@ require("utils")
 require("UI")
 
 function love.load()
-	Font = love.graphics.newFont("res/fonts/Lato-Light.ttf", 24)
+	Font = love.graphics.newFont("res/fonts/Lato-Regular.ttf", 24, "normal")
 end
 
 function love.draw()
