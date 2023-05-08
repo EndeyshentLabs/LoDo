@@ -19,6 +19,7 @@ function love.draw()
 
 	if List then
 		for k, v in pairs(List) do
+			v.y = (k - 1) * 32
 			if v.done then
 				v.x = 200
 			else
@@ -60,7 +61,7 @@ end
 
 function love.keypressed(key)
 	if love.keyboard.isDown("i") then
-		List[#List + 1] = Button:new("TODO", function() end, 0, #List * 32, 100, 30)
+		List[#List + 1] = Button:new("TODO", function() end, 0, 0, 100, 30)
 		List[#List].done = false
 		Cursor = #List
 	end
