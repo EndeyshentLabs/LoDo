@@ -45,8 +45,6 @@ end
 function love.draw()
 	love.graphics.setBackgroundColor(love.math.colorFromBytes(0x20, 0x20, 0x20))
 	setColorHEX("#efefef")
-	love.graphics.print(tostring(Cursor), Font, 300, 300)
-
 	love.graphics.rectangle("line", 0, (Cursor - 1) * 32, love.graphics.getWidth(), 32)
 
 	if List then
