@@ -15,8 +15,8 @@ function love.load()
 end
 
 function love.draw()
-	love.graphics.setBackgroundColor(0.04, 0.04, 0.04)
-	setColorHEX("#ffffff")
+	love.graphics.setBackgroundColor(love.math.colorFromBytes(0x20, 0x20, 0x20))
+	setColorHEX("#efefef")
 	love.graphics.print(tostring(Cursor), Font, 300, 300)
 
 	love.graphics.rectangle("line", 0, (Cursor - 1) * 32, love.graphics.getWidth(), 32)
@@ -33,7 +33,7 @@ function love.draw()
 		end
 	end
 
-	setColorHEX("#202020")
+	setColorHEX("#101010")
 	love.graphics.rectangle(
 		"fill",
 		0,
@@ -63,7 +63,7 @@ function love.update()
 	end
 
 	if once then
-		List[#List + 1] = Button:new(input, function() end, 0, 0, love.graphics.getWidth() / 2, 30)
+		List[#List + 1] = TodoElement:new(input, 0, 0, love.graphics.getWidth() / 2, 30)
 		List[#List].done = false
 		Cursor = #List
 		once = false
